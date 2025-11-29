@@ -38,7 +38,7 @@ public class discpuntcalculator
         
         float sp = mp - (mp * (discount/100));
         System.out.println("total price =" + " " + sp);
-        
+
         
         
         

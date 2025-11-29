@@ -29,7 +29,7 @@ public class switchcaseExample
                 
                 
             case '-' ->
-                 System.out.println("substraction is " + " " + a+- );
+                 System.out.println("substraction is " + " " + a+b );
                  
             case '/' ->
             
