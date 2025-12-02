@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Write a description of class CinemaTicket here.
  *
- * @author (your name)
+ * @author Aryush 
  * @version (a version number or a date)
  */
 public class CinemaTicket
@@ -14,11 +14,11 @@ public class CinemaTicket
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to XFX Cinema");
-        System.out.println("plese answer the following questions to get the total ticket price");
-        System.out.println("plese enter the age group as child, Adult and senior");
+        System.out.println("please answer the following questions to get the total ticket price");
+        System.out.println("please enter the age group as child, Adult and senior");
         System.out.println("Note age group (1-14)child, (15-40)adult (40+)senior");
         String age = sc.next().toLowerCase();
-        System.out.println("Plese enter movie language (nepali, hindi, english)");
+        System.out.println("Please enter movie language (nepali, hindi, english)");
         String lang = sc.next().toLowerCase();;
         System.out.println("is the customer student? (yes/no)");
         String student = sc.next().toLowerCase();;
