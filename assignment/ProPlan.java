@@ -1,54 +1,35 @@
 package assignment;
 
-/**
- * Write a description of class ProPlan here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class ProPlan extends AIModel
-{
-    // Number of team slots available for adding members
+// Pro plan class
+public class ProPlan extends AIModel {
+
     private int availableTeamSlots;
 
-    // Constructor to initialize ProPlan with model details and available team slots
-    public ProPlan(String modelName, double price, int parameterCount, String contextWindow, int availableTeamSlots)
-    {
-        super(modelName, price, parameterCount, contextWindow); // call AIModel constructor
-        this.availableTeamSlots = availableTeamSlots; // set initial team slots
+    // Constructor
+    public ProPlan(String modelName, double price, int parameterCount,
+                   int contextWindow, int availableTeamSlots) {
+        super(modelName, price, parameterCount, contextWindow);
+        this.availableTeamSlots = availableTeamSlots;
     }
 
-    // Adds a team member if there is an available slot
-    public String addTeamMember(String memberName)
-    {  
-        if (availableTeamSlots > 0) 
-        {         
-            availableTeamSlots -= 1; // use one slot       
-            return "Added team member: " + memberName + ". Slots remaining: " + availableTeamSlots;  
-        } 
-        else 
-        {    
-            return "Error: No available team slots."; // no slots left
-        }  
+    // Method to add team member
+    public String addTeamMember(String memberName) {
+        if (availableTeamSlots > 0) {
+            availableTeamSlots--;
+            return "Added team member: " + memberName +
+                   ". Slots remaining: " + availableTeamSlots;
+        } else {
+            return "No available team slots.";
+        }
     }
 
-    // Removes a team member and frees up a slot
-    public String removeTeamMember(String memberName)
-    {   
-        availableTeamSlots += 1; // free a slot    
-        return "Removed team member: " + memberName + ". Slots remaining: " + availableTeamSlots;  
-    }
-
-    // Submit a prompt for Pro plan users (unlimited, so no quota)
-    public String enterPrompt(String promptText, int expectedTokens) 
-    {
-        return "[Pro] Prompt accepted (unlimited). Text: " + promptText + " | Expected tokens: " + expectedTokens;
-    }
-
-    // Display model details along with available team slots
-    @Override 
-    public String display() 
-    {     
-        return super.display() + ", Available Team Slots: " + availableTeamSlots; 
+    // Display plan information
+    @Override
+    public String display() {
+        return "Model: " + getModelName() +
+               ", Price: " + getPrice() +
+               ", Parameters: " + getParameterCount() +
+               ", Context Window: " + getContextWindow() +
+               ", Available Team Slots: " + availableTeamSlots;
     }
 }

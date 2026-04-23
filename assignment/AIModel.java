@@ -1,64 +1,43 @@
 package assignment;
 
-/**
- * Write a description of class AIModel here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class AIModel
-{
-    // Name of the AI model
-    private String modelName;
-    
-    // Price per 1 Lakh tokens
-    private double price;  
-    
-    // Number of parameters in billions
-    private int parameterCount;  
-    
-    // Maximum number of tokens the model can process at once
-    private String contextWindow;
 
-    // Constructor to initialize the AI model with its details
-    public AIModel(String modelName, double price, int parameterCount, String contextWindow)
-    {
+
+
+
+// Parent class for all AI models
+public abstract class AIModel {
+
+    // Common variables for all plans
+    private String modelName;
+    private double price;
+    private int parameterCount;
+    private int contextWindow;
+
+    // Constructor
+    public AIModel(String modelName, double price, int parameterCount, int contextWindow) {
         this.modelName = modelName;
         this.price = price;
         this.parameterCount = parameterCount;
         this.contextWindow = contextWindow;
     }
 
-    // Returns the name of the model
-    public String getModelName()
-    {
+    // Getter methods
+    public String getModelName() {
         return modelName;
     }
 
-    // Returns the price of the model
-    public double getPrice()
-    {     
+    public double getPrice() {
         return price;
     }
 
-    // Returns the total number of parameters
-    public int getParameterCount() 
-    {    
-        return parameterCount;  
+    public int getParameterCount() {
+        return parameterCount;
     }
 
-    // Returns the context window size
-    public String getContextWindow() 
-    {    
-        return contextWindow; 
+    public int getContextWindow() {
+        return contextWindow;
     }
-    
-    // Returns a string summarizing all model details
-    public String display()
-    {      
-        return "Model: " + modelName +    
-        ", Price (per 1 Lakh tokens): " + price +      
-        ", Parameters (B): " + parameterCount +        
-        ", Context Window: " + contextWindow; 
-    }
+
+    // Display method to be implemented by child classes
+    public abstract String display();
 }

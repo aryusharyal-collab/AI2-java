@@ -1,0 +1,2 @@
+Type       Name            Speed      Seats      Fuel       Tank      
+Car        lc              250        6          3.00       500.00    

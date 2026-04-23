@@ -1,0 +1,1 @@
+Model: GPT, Price: 299.0, Parameters: 30, Context Window: 8910, Available Team Slots: 5

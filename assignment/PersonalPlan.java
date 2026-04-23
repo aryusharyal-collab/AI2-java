@@ -1,64 +1,44 @@
 package assignment;
 
-/**
- * Write a description of class PersonalPlan here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class PersonalPlan extends AIModel
-{
-    // Number of prompts the user can still use this month
-    private int promptsRemaining;
+// Personal plan class
+public class PersonalPlan extends AIModel {
 
-    // Constructor to initialize PersonalPlan with model details and initial prompt count
-    public PersonalPlan(String modelName, double price, int parameterCount, String contextWindow, int promptsRemaining)
-    {
-        super(modelName, price, parameterCount, contextWindow); // call AIModel constructor
-        this.promptsRemaining = promptsRemaining; // set initial prompt quota
+    private int availableTokens;
+
+    // Constructor
+    public PersonalPlan(String modelName, double price, int parameterCount,
+                        int contextWindow, int availableTokens) {
+        super(modelName, price, parameterCount, contextWindow);
+        this.availableTokens = availableTokens;
     }
 
-    // Returns how many prompts are left for the user
-    public int getPromptsRemaining()
-    {      
-        return promptsRemaining;  
-    }
+    // Method to enter a prompt
+    public String enterPrompt(String promptText, int expectedTokens) {
 
-    // Buy additional prompts and add them to remaining quota
-    public String buyAdditioinalPrompts(int count)
-    {
-        // Check for invalid input
-        if (count < 0 )
-        {
-            return "Error: Enter a positive number of prompts or upgrade to Pro plan ";
+        int inputTokens = promptText.split(" ").length;
+        int totalTokens = inputTokens + expectedTokens;
+
+        if (totalTokens > getContextWindow()) {
+            return "Error: Token limit exceeds context window.";
         }
 
-        // Add purchased prompts to quota
-        promptsRemaining += count;     
-        return "Purchased " + count + " prompts. New quota: " + promptsRemaining;
+        if (availableTokens >= totalTokens) {
+            availableTokens -= totalTokens;
+            return "Prompt submitted.\nText: " + promptText +
+                   "\nTokens used: " + totalTokens +
+                   "\nRemaining tokens: " + availableTokens;
+        } else {
+            return "Not enough available tokens.";
+        }
     }
 
-    // Submit a prompt to the AI model
-    public String enterPrompt(String promptText, int expectedTokens)
-    {
-        // Check if there are prompts left
-        if (promptsRemaining > 0)
-        {       
-            promptsRemaining -= 1; // use one prompt     
-            return "Prompt submitted.\nText: " + promptText +    
-            "\nExpected tokens: " + expectedTokens +               
-            "\nPrompts remaining: " + promptsRemaining;     
-        } 
-        else 
-        {  
-            return "Monthly plan limit reached. No prompts remaining.";  // quota exhausted
-        }  
-    }
-    
-    // Display model details along with remaining prompts
-    @Override   
-    public String display() 
-    {    
-        return super.display() + ", Prompts Remaining: " + promptsRemaining; 
+    // Display plan information
+    @Override
+    public String display() {
+        return "Model: " + getModelName() +
+               ", Price: " + getPrice() +
+               ", Parameters: " + getParameterCount() +
+               ", Context Window: " + getContextWindow() +
+               ", Available Tokens: " + availableTokens;
     }
 }

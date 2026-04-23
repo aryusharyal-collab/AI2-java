@@ -15,7 +15,7 @@ public class discpuntcalculator
         Scanner sc = new Scanner(System.in);
         System.out.println("enter the marked priced");
         float mp = sc.nextFloat();
-        System.out.println("enter the category opf discount");
+        System.out.println("enter the category of discount");
         char dis = sc.next().charAt(0);
         char toLower=Character.toLowerCase(dis);
         float discount=0;
